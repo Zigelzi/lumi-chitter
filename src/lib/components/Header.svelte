@@ -1,6 +1,6 @@
 <script>
-    import Waves from "./Waves.svelte";
-    import Nav from "./Nav.svelte";
+	import Waves from './Waves.svelte';
+	import Nav from './Nav.svelte';
 </script>
 
 <!-- Header with information -->
