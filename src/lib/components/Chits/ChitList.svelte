@@ -1,16 +1,20 @@
 <script>
+	import {onDestroy} from 'svelte';
 	import Chit from './Chit.svelte';
+	import { ChitStore } from '$lib/stores/ChitStore.js';
 
-	let chits = [
-		{
-			id: 1,
-			author: 'MSav',
-			handle: '@miisa',
-			content: 'Testing chits with Svelte!'
-		}
-	];
+	let allChits = [];
+
+	let chitStoreUnsub = ChitStore.subscribe((data) => (allChits = data));
+
+	onDestroy(() => {
+		chitStoreUnsub();
+	});
+
 </script>
 
-{#each chits as chit (chit.id)}
-	<Chit {chit} />
-{/each}
+<div class="all-chits">
+	{#each allChits as chit (chit.id)}
+		<Chit {chit} />
+	{/each}
+</div>
