@@ -1,14 +1,14 @@
 <script>
-	import AddChit from '$lib/components/Chits/AddChit.svelte';
-	import ChitList from '$lib/components/Chits/ChitList.svelte';
+	import NewChit from '$lib/components/Chits/NewChit.svelte';
+	import AllChits from '$lib/components/Chits/AllChits.svelte';
 </script>
 
 <div id="app-container" class="app-container">
 	<section>
 		<div class="container">
 			<main>
-				<AddChit />
-				<ChitList />
+				<NewChit />
+				<AllChits />
 			</main>
 			<aside>
 				Chitter is a tweet client built on Svelte. Nothing much going on over here. See more on:

@@ -1,6 +1,23 @@
+<script>
+	import { ChitStore } from '$lib/stores/ChitStore.js';
+	let newChitContent;
+
+	function postChit() {
+		if (newChitContent !== '') {
+			let newChit = {
+				author: 'MSav',
+				handle: '@miisa',
+				content: newChitContent
+			};
+			ChitStore.addChit(newChit);
+			newChitContent = '';
+		}
+	}
+</script>
+
 <div class="chit-entry">
-	<textarea placeholder="Say something..." />
-	<button class="btn-send fa-solid fa-location-arrow" />
+	<textarea placeholder="Say something..." bind:value={newChitContent} />
+	<button class="btn-send fa-solid fa-location-arrow" on:click={postChit} />
 </div>
 
 <style>
