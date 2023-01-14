@@ -3,15 +3,16 @@
 	let newChitContent;
 
 	function postChit() {
-		if (newChitContent !== '') {
-			let newChit = {
-				author: 'MSav',
-				handle: '@miisa',
-				content: newChitContent
-			};
-			ChitStore.addChit(newChit);
-			newChitContent = '';
-		}
+		if (newChitContent === '' || newChitContent === undefined) return;
+
+		let newChit = {
+			author: 'MSav',
+			handle: '@miisa',
+			content: newChitContent,
+			likes: 0
+		};
+		ChitStore.addChit(newChit);
+		newChitContent = '';
 	}
 </script>
 

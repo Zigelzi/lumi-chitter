@@ -6,7 +6,8 @@ function createChitStore() {
 			id: 1,
 			author: 'MSav',
 			handle: '@miisa',
-			content: 'Testing chits with Svelte!'
+			content: 'Testing chits with Svelte!',
+			likes: 0
 		}
 	]);
 
@@ -18,10 +19,20 @@ function createChitStore() {
 		});
 	};
 
+	const incrementLike = function(chitId) {
+		update((existingChits) => {
+			let chitToUpdate = existingChits.find(chit => chit.id == chitId);
+			chitToUpdate.likes++;
+			
+			return existingChits;
+		})
+	}
+
 	return {
 		subscribe,
 		update,
-		addChit
+		addChit,
+		incrementLike
 	};
 }
 

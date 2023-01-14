@@ -1,18 +1,24 @@
 <script>
+	import { ChitStore } from '$lib/stores/ChitStore.js';
+
 	export let chit;
+
+	function like() {
+		ChitStore.incrementLike(chit.id);
+	}
 </script>
 
-<div class="chit">
+<div class="chit" id="chit-{chit.id}">
 	<div class="author">{chit.author}</div>
 	<div class="handle">{chit.handle}</div>
 	<div class="chit-content">
 		{chit.content}
 	</div>
 	<div class="chit-meta">
-		<div class="rechit"><i class="fa-solid fa-retweet" /> 2</div>
-		<div class="like"><i class="fa-solid fa-thumbs-up" /> 10</div>
-		<div class="save"><i class="fa-solid fa-share-alt" /></div>
-		<div class="save"><i class="fa-solid fa-trash" /></div>
+		<button class="rechit"><i class="fa-solid fa-retweet" /> 2</button>
+		<button class="like" on:click={like}><i class="fa-solid fa-thumbs-up" /> {chit.likes}</button>
+		<button class="save"><i class="fa-solid fa-share-alt" /></button>
+		<button class="save"><i class="fa-solid fa-trash" /></button>
 	</div>
 </div>
 
@@ -41,6 +47,13 @@
 		font-size: x-small;
 		border-top: 1px solid #dce4ec22;
 		padding-bottom: 0px;
+	}
+
+	.chit-meta button {
+		background: none;
+		border-top: 1px solid #dce4ec22;
+		border: none;
+		color: #dce4ec;
 	}
 
 	.chit-meta i {
