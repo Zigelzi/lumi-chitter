@@ -6,6 +6,10 @@
 	function like() {
 		ChitStore.incrementLike(chit.id);
 	}
+
+	function remove() {
+		ChitStore.removeChit(chit);
+	}
 </script>
 
 <div class="chit" id="chit-{chit.id}">
@@ -17,8 +21,8 @@
 	<div class="chit-meta">
 		<button class="rechit"><i class="fa-solid fa-retweet" /> 2</button>
 		<button class="like" on:click={like}><i class="fa-solid fa-thumbs-up" /> {chit.likes}</button>
-		<button class="save"><i class="fa-solid fa-share-alt" /></button>
-		<button class="save"><i class="fa-solid fa-trash" /></button>
+		<button class="share"><i class="fa-solid fa-share-alt" /></button>
+		<button class="remove" on:click={remove}><i class="fa-solid fa-trash" /></button>
 	</div>
 </div>
 

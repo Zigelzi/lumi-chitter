@@ -23,7 +23,18 @@ function createChitStore() {
 		update((existingChits) => {
 			let chitToUpdate = existingChits.find(chit => chit.id == chitId);
 			chitToUpdate.likes++;
-			
+
+			return existingChits;
+		})
+	}
+
+	const removeChit = function(removedChit) {
+		update((existingChits) => {
+			let chitIndex = existingChits.indexOf(removedChit);
+			if (chitIndex !== -1) {
+				existingChits.splice(chitIndex, 1);
+			}
+
 			return existingChits;
 		})
 	}
@@ -32,7 +43,8 @@ function createChitStore() {
 		subscribe,
 		update,
 		addChit,
-		incrementLike
+		incrementLike,
+		removeChit
 	};
 }
 
