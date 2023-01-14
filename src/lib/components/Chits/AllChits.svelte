@@ -5,7 +5,9 @@
 
 	let allChits = [];
 
-	let chitStoreUnsub = ChitStore.subscribe((data) => (allChits = data));
+	let chitStoreUnsub = ChitStore.subscribe((data) => {
+		allChits = data;
+	});
 
 	onDestroy(() => {
 		chitStoreUnsub();
