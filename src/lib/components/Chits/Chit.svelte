@@ -4,7 +4,8 @@
 	export let chit;
 
 	function like() {
-		ChitStore.incrementLike(chit.id);
+		const userId = localStorage.getItem('userId');
+		ChitStore.incrementLike(chit.id, userId);
 	}
 
 	function remove() {
@@ -20,7 +21,7 @@
 	</div>
 	<div class="chit-meta">
 		<button class="rechit"><i class="fa-solid fa-retweet" /> 2</button>
-		<button class="like" on:click={like}><i class="fa-solid fa-thumbs-up" /> {chit.likes}</button>
+		<button class="like" on:click={like}><i class="fa-solid fa-thumbs-up" /> {chit.likes.length}</button>
 		<button class="share"><i class="fa-solid fa-share-alt" /></button>
 		<button class="remove" on:click={remove}><i class="fa-solid fa-trash" /></button>
 	</div>

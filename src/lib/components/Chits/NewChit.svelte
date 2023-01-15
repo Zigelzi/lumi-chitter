@@ -5,11 +5,13 @@
 	function postChit() {
 		if (newChitContent === '' || newChitContent === undefined) return;
 
+		const userId = localStorage.getItem('userId');
 		let newChit = {
 			author: 'MSav',
 			handle: '@miisa',
 			content: newChitContent,
-			likes: 0
+			likes: [],
+			authodId: userId
 		};
 		ChitStore.addChit(newChit);
 		newChitContent = '';

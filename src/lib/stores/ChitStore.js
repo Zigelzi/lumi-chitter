@@ -7,7 +7,8 @@ function createChitStore() {
 			author: 'MSav',
 			handle: '@miisa',
 			content: 'Testing chits with Svelte!',
-			likes: 0
+			likes: [],
+			authorId: '4487df84-770b-4b31-9299-8902bf50efbb'
 		}
 	]);
 
@@ -19,10 +20,14 @@ function createChitStore() {
 		});
 	};
 
-	const incrementLike = function(chitId) {
+	const incrementLike = function(chitId, likerId) {
 		update((existingChits) => {
 			let chitToUpdate = existingChits.find(chit => chit.id == chitId);
-			chitToUpdate.likes++;
+			let likeIndex = chitToUpdate.likes.indexOf(likerId);
+			if (likeIndex !== -1) return existingChits;
+
+			chitToUpdate.likes.push(likerId);
+			console.log(existingChits);
 
 			return existingChits;
 		})
