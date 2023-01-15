@@ -1,15 +1,32 @@
 <script>
 	import { ChitStore } from '$lib/stores/ChitStore.js';
+	import { browser } from '$app/environment';
 
 	export let chit;
+	
+	let isLiked;
+	let userId;
+
+	if (browser) {
+		userId = localStorage.getItem('userId');
+		isLiked = hasUserLikedChit(userId);
+	}
 
 	function like() {
-		const userId = localStorage.getItem('userId');
-		ChitStore.incrementLike(chit.id, userId);
+		userId = localStorage.getItem('userId');
+		ChitStore.toggleLike(chit.id, userId);
+		isLiked = hasUserLikedChit(userId);
 	}
 
 	function remove() {
 		ChitStore.removeChit(chit);
+	}
+
+	function hasUserLikedChit(userId) {
+		let likeId = chit.likes.indexOf(userId);
+		if (likeId === -1) return false;
+
+		return true;
 	}
 </script>
 
@@ -21,7 +38,10 @@
 	</div>
 	<div class="chit-meta">
 		<button class="rechit"><i class="fa-solid fa-retweet" /> 2</button>
-		<button class="like" on:click={like}><i class="fa-solid fa-thumbs-up" /> {chit.likes.length}</button>
+		<button class="like" on:click={like}
+			><i class="fa-thumbs-up {isLiked ? 'fa-solid' : 'fa-regular'}" />
+			{chit.likes.length}</button
+		>
 		<button class="share"><i class="fa-solid fa-share-alt" /></button>
 		<button class="remove" on:click={remove}><i class="fa-solid fa-trash" /></button>
 	</div>

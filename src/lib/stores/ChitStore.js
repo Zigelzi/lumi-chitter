@@ -20,14 +20,16 @@ function createChitStore() {
 		});
 	};
 
-	const incrementLike = function(chitId, likerId) {
+	const toggleLike = function(chitId, likerId) {
 		update((existingChits) => {
 			let chitToUpdate = existingChits.find(chit => chit.id == chitId);
 			let likeIndex = chitToUpdate.likes.indexOf(likerId);
-			if (likeIndex !== -1) return existingChits;
-
-			chitToUpdate.likes.push(likerId);
-			console.log(existingChits);
+			if (likeIndex !== -1) {
+				chitToUpdate.likes.splice(likeIndex, 1)
+			}
+			else {
+				chitToUpdate.likes.push(likerId);
+			}
 
 			return existingChits;
 		})
@@ -48,7 +50,7 @@ function createChitStore() {
 		subscribe,
 		update,
 		addChit,
-		incrementLike,
+		toggleLike,
 		removeChit
 	};
 }
