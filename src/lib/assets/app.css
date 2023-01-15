@@ -5,6 +5,11 @@
 	--fc-grey-200: var(--grey-200);
 }
 
+* {
+	margin: 0;
+	padding: 0;
+}
+
 html,
 body {
 	margin: 0;
