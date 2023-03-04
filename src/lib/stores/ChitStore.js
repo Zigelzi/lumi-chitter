@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { fetchChits, toggleBeLike } from '../backend/api';
+import { fetchChits, toggleBeLike, postChit } from '../backend/api';
 
 function createChitStore() {
 	const { subscribe, set, update } = writable(fetchChits());
@@ -7,6 +7,7 @@ function createChitStore() {
 	const addChit = function (newChit) {
 		update((existingChits) => {
 			newChit.id = generateId(existingChits);
+			postChit(newChit);
 			existingChits.push(newChit);
 			return existingChits;
 		});
