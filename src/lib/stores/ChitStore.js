@@ -4,12 +4,15 @@ import { fetchChits, toggleBeLike, postChit } from '../backend/api';
 function createChitStore() {
 	const { subscribe, set, update } = writable(fetchChits());
 
-	const addChit = function (newChit) {
-		update((existingChits) => {
-			newChit.id = generateId(existingChits);
-			postChit(newChit);
-			existingChits.push(newChit);
-			return existingChits;
+	const addChit = async function (newChit) {
+		let response = postChit(newChit);
+
+		response.then((data) => {
+			update((existingChits) => {
+				newChit.id = generateId(existingChits);
+				existingChits.push(newChit);
+				return existingChits;
+			});
 		});
 	};
 
