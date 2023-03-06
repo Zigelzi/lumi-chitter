@@ -7,10 +7,9 @@ function createChitStore() {
 	const addChit = async function (newChit) {
 		let response = postChit(newChit);
 
-		response.then((data) => {
+		response.then((res) => {
 			update((existingChits) => {
-				newChit.id = generateId(existingChits);
-				existingChits.push(newChit);
+				existingChits.push(res.data.chit);
 				return existingChits;
 			});
 		});
