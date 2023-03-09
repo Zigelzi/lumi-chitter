@@ -1,11 +1,11 @@
 <script>
-	import { ChitStore } from '$lib/stores/ChitStore.js';
 	let newChitContent;
 
-	function postChit() {
+	async function postChit() {
 		if (newChitContent === '' || newChitContent === undefined) return;
 
 		const userId = localStorage.getItem('userId');
+
 		let newChit = {
 			userId: 1,
 			author: 'MSav',
@@ -14,14 +14,32 @@
 			likes: [],
 			authodId: userId
 		};
-		ChitStore.addChit(newChit);
+		await fetch('/api/chit', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(newChit)
+		});
+
 		newChitContent = '';
 	}
 </script>
 
-<div class="chit-entry">
-	<textarea placeholder="Say something..." bind:value={newChitContent} />
-	<button class="btn-send fa-solid fa-location-arrow" on:click={postChit} />
+<div>
+	<!-- <textarea placeholder="Say something..."  /> -->
+	<form class="chit-entry " on:submit|preventDefault={postChit}>
+		<label for="chit-content" class="chit-content">
+			<textarea
+				name="chit-content"
+				id="chit-content"
+				placeholder="Say something..."
+				bind:value={newChitContent}
+			/>
+		</label>
+		<button class="btn-send fa-solid fa-location-arrow" />
+	</form>
 </div>
 
 <style>
@@ -38,14 +56,19 @@
 		align-items: center;
 	}
 
-	.chit-entry textarea {
+	.chit-content {
 		display: block;
 		flex-basis: 90%;
+		display: flex;
+	}
+
+	.chit-content textarea {
 		background-color: #282c34;
 		color: #dce4ec;
 		font-size: smaller;
 		padding: 10px;
 		border: 1px solid #dce4ec22;
+		flex-grow: 1;
 	}
 
 	.chit-entry .btn-send {
