@@ -2,12 +2,12 @@
 	import Chit from './Chit.svelte';
 	import type { ChitData } from '$lib/types/types';
 
-	let allChits: ChitData[] = [];
+	export let chits: ChitData[] = [];
 </script>
 
 <div class="all-chits">
-	{#if allChits.length > 0}
-		{#each allChits as chit (chit.id)}
+	{#if chits.length > 0}
+		{#each chits as chit (chit.id)}
 			<Chit {chit} />
 		{/each}
 	{:else}
