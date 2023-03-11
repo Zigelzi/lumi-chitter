@@ -21,14 +21,4 @@
 		justify-content: space-between;
 		align-items: center;
 	}
-
-	nav .container ul {
-		display: flex;
-		height: 100%;
-	}
-
-	nav .container ul li {
-		margin: 10px;
-		list-style: none;
-	}
 </style>

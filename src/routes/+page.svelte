@@ -1,16 +1,6 @@
 <script>
-	import { onMount } from 'svelte';
-	import { v4 as uuidv4 } from 'uuid';
-
 	import NewChit from '$lib/components/Chits/NewChit.svelte';
 	import AllChits from '$lib/components/Chits/AllChits.svelte';
-
-	onMount(() => {
-		const userId = localStorage.getItem('userId');
-		if (userId === null) {
-			localStorage.setItem('userId', uuidv4());
-		}
-	});
 </script>
 
 <div id="app-container" class="app-container">

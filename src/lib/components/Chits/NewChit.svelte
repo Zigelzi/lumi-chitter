@@ -1,18 +1,14 @@
-<script>
-	let newChitContent;
+<script lang="ts">
+	let newChitContent: string;
 
 	async function postChit() {
 		if (newChitContent === '' || newChitContent === undefined) return;
-
-		const userId = localStorage.getItem('userId');
 
 		let newChit = {
 			userId: 1,
 			author: 'MSav',
 			handle: '@miisa',
-			content: newChitContent,
-			likes: [],
-			authodId: userId
+			content: newChitContent
 		};
 		await fetch('/api/chit', {
 			method: 'POST',
@@ -28,7 +24,6 @@
 </script>
 
 <div>
-	<!-- <textarea placeholder="Say something..."  /> -->
 	<form class="chit-entry " on:submit|preventDefault={postChit}>
 		<label for="chit-content" class="chit-content">
 			<textarea
