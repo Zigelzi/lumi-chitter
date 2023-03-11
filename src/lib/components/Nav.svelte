@@ -1,6 +1,8 @@
 <nav>
 	<div class="container">
 		<span class="logo"><i class="fa-solid fa-location-arrow" />Chitter</span>
+		<a href="/">Home</a>
+		<a href="/account">Account</a>
 	</div>
 </nav>
 
