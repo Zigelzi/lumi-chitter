@@ -13,7 +13,7 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				id: chit.id
+				chit: chit
 			})
 		})
 			.then((response) => response.json())

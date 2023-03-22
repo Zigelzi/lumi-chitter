@@ -10,7 +10,7 @@
 		let newChit = {
 			author: {
 				id: 1,
-				name: 'MSav',
+				name: 'Miika Savela',
 				handle: '@miisa'
 			},
 			content: newChitContent

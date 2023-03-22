@@ -23,20 +23,28 @@ export const POST: RequestHandler = async ({ request }) => {
 	const response = await fetch('http://localhost:5000/chit', settings);
 	const data = await response.json();
 
-	return json({ success: true, data });
+	return json(data, {
+		status: 200
+	});
 };
 
 export const DELETE: RequestHandler = async ({ request }) => {
-	const chit = await request.json();
+	const data = await request.json();
+	const chit = data.chit;
 	const settings = {
 		method: 'DELETE',
 		headers: {
 			Accept: 'application/json',
 			'Content-Type': 'application/json'
-		}
+		},
+		body: JSON.stringify({
+			chit: chit
+		})
 	};
 	const response = await fetch(`http://localhost:5000/chit/${chit.id}`, settings);
-	const data = await response.json();
+	const responseData = await response.json();
 
-	return json({ success: true, data });
+	return json(responseData, {
+		status: 200
+	});
 };
