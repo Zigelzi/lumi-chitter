@@ -21,7 +21,7 @@
 		<div class="container">
 			<main>
 				<NewChit on:chitAdded={updateChits} />
-				<AllChits {chits} />
+				<AllChits {chits} on:chitDeleted={updateChits} />
 			</main>
 			<aside>
 				Chitter is a tweet client built on Svelte. Nothing much going on over here. See more on:

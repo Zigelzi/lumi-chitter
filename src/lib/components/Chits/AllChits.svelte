@@ -8,7 +8,7 @@
 <div class="all-chits">
 	{#if chits.length > 0}
 		{#each chits as chit (chit.id)}
-			<Chit {chit} />
+			<Chit {chit} on:chitDeleted />
 		{/each}
 	{:else}
 		<div class="no-chits">

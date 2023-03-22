@@ -1,6 +1,28 @@
 <script lang="ts">
 	import type { ChitData } from '$lib/types/types';
+	import { createEventDispatcher } from 'svelte';
 	export let chit: ChitData;
+
+	const dispatch = createEventDispatcher();
+
+	async function deleteChit() {
+		await fetch('/api/chit/', {
+			method: 'DELETE',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				id: chit.id
+			})
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data) {
+					dispatch('chitDeleted');
+				}
+			});
+	}
 </script>
 
 <div class="chit" id="chit-{chit.id}">
@@ -16,7 +38,7 @@
 			0</button
 		>
 		<button class="share"><i class="fa-solid fa-share-alt" /></button>
-		<button class="remove"><i class="fa-solid fa-trash" /></button>
+		<button class="remove" on:click={deleteChit}><i class="fa-solid fa-trash" /></button>
 	</div>
 </div>
 

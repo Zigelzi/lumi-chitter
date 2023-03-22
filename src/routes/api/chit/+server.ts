@@ -25,3 +25,18 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	return json({ success: true, data });
 };
+
+export const DELETE: RequestHandler = async ({ request }) => {
+	const chit = await request.json();
+	const settings = {
+		method: 'DELETE',
+		headers: {
+			Accept: 'application/json',
+			'Content-Type': 'application/json'
+		}
+	};
+	const response = await fetch(`http://localhost:5000/chit/${chit.id}`, settings);
+	const data = await response.json();
+
+	return json({ success: true, data });
+};
