@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
-export const POST: RequestHandler = async ({ request, fetch }) => {
+export const POST: RequestHandler = async ({ request, fetch, cookies }) => {
 	const user = await request.json();
 	const settings = {
 		method: 'POST',
@@ -13,6 +13,9 @@ export const POST: RequestHandler = async ({ request, fetch }) => {
 	};
 	const response = await fetch('http://localhost:5000/user', settings);
 	const data = await response.json();
+	cookies.set('token', data.token, {
+		path: '/'
+	});
 
 	return json(data, {
 		status: 200
