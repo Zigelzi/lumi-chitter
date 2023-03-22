@@ -1,4 +1,4 @@
-const localBackendUrl = 'http://localhost:5000/';
+const localBackendUrl = 'http://localhost:5000';
 
 export function fetchChits() {
 	console.log('[BE] Fetching all chits');
@@ -28,22 +28,26 @@ export function toggleBeLike(chitId) {
 }
 
 export async function postChit(chit) {
-	const endpoint = localBackendUrl + 'chit';
 	const chitData = {
 		content: chit.content
 	};
-	console.log('Posting chit to: ' + endpoint);
-	console.log(JSON.stringify(chitData));
-	const response = await fetch(endpoint, {
+	const settings = {
 		method: 'POST',
 		headers: {
 			Accept: 'application/json',
-			'Access-Control-Allow-Origin': '*',
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(chitData)
-	});
+	};
 
-	const data = await response.json();
-	console.log(data);
+	try {
+		const endpoint = `${localBackendUrl}/chit/`;
+		const response = await fetch(endpoint, settings);
+
+		const data = await response.json();
+		return data;
+	} catch (e) {
+		console.error('Error:', e);
+		return e;
+	}
 }
