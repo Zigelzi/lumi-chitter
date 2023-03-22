@@ -22,7 +22,6 @@ export const POST: RequestHandler = async ({ request }) => {
 	};
 	const response = await fetch('http://localhost:5000/chit', settings);
 	const data = await response.json();
-	// console.log(data);
 
 	return json({ success: true, data });
 };

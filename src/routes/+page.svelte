@@ -5,13 +5,22 @@
 
 	export let data: PageData;
 	$: chits = data.chits;
+
+	async function updateChits() {
+		const response = await fetch('api/chit');
+
+		if (response.ok) {
+			const data = await response.json();
+			chits = data.data.chits;
+		}
+	}
 </script>
 
 <div id="app-container" class="app-container">
 	<section>
 		<div class="container">
 			<main>
-				<NewChit />
+				<NewChit on:chitAdded={updateChits} />
 				<AllChits {chits} />
 			</main>
 			<aside>

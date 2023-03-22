@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	let newChitContent: string;
+
+	const dispatch = createEventDispatcher();
 
 	async function postChit() {
 		if (newChitContent === '' || newChitContent === undefined) return;
@@ -12,7 +15,8 @@
 			},
 			content: newChitContent
 		};
-		await fetch('/api/chit', {
+
+		await fetch('/api/chit/', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
@@ -21,7 +25,11 @@
 			body: JSON.stringify(newChit)
 		})
 			.then((response) => response.json())
-			.then((data) => console.log(data));
+			.then((data) => {
+				if (data) {
+					dispatch('chitAdded');
+				}
+			});
 
 		newChitContent = '';
 	}
