@@ -10,7 +10,7 @@ export const GET: RequestHandler = async ({ fetch }) => {
 	});
 };
 
-export const POST: RequestHandler = async ({ request }) => {
+export const POST: RequestHandler = async ({ request, fetch }) => {
 	const chit = await request.json();
 	const settings = {
 		method: 'POST',
@@ -28,7 +28,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	});
 };
 
-export const DELETE: RequestHandler = async ({ request }) => {
+export const DELETE: RequestHandler = async ({ request, fetch }) => {
 	const data = await request.json();
 	const chit = data.chit;
 	const settings = {
