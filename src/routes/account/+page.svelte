@@ -48,4 +48,12 @@
 		display: block;
 		margin-bottom: 16px;
 	}
+
+	button {
+		padding: 0.5em 1em;
+		border: none;
+		background-color: var(--grey-200);
+		color: var(--grey-600);
+		border-radius: 5px;
+	}
 </style>
