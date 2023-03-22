@@ -16,21 +16,19 @@
 	}
 </script>
 
-<div id="app-container" class="app-container">
-	<section>
-		<div class="container">
-			<main>
-				<NewChit on:chitAdded={updateChits} />
-				<AllChits {chits} on:chitDeleted={updateChits} />
-			</main>
-			<aside>
-				Chitter is a tweet client built on Svelte. Nothing much going on over here. See more on:
+<section>
+	<div class="container">
+		<main>
+			<NewChit on:chitAdded={updateChits} />
+			<AllChits {chits} on:chitDeleted={updateChits} />
+		</main>
+		<aside>
+			Chitter is a tweet client built on Svelte. Nothing much going on over here. See more on:
 
-				<p>recluze.net/course-svelte</p>
-			</aside>
-		</div>
-	</section>
-</div>
+			<p>recluze.net/course-svelte</p>
+		</aside>
+	</div>
+</section>
 
 <style>
 	section .container main {

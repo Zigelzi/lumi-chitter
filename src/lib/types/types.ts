@@ -1,10 +1,10 @@
 export interface ChitData {
-    id: number;
-    content: string;
-    author: Author;
+	id: number;
+	content: string;
+	author: User;
 }
 
-export interface Author {
-    name: string;
-    handle: string;
+export interface User {
+	name: string;
+	handle: string;
 }
