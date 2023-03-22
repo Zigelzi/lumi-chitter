@@ -1,4 +1,6 @@
-const fetchChits = () => {
+const localBackendUrl = 'http://localhost:5000/';
+
+export function fetchChits() {
 	console.log('[BE] Fetching all chits');
 
 	return [
@@ -19,10 +21,29 @@ const fetchChits = () => {
 			authorId: 'ace16e01-47bd-4297-921e-05b72e013cc0'
 		}
 	];
-};
+}
 
-const toggleBeLike = (chitId) => {
+export function toggleBeLike(chitId) {
 	console.log(`[BE] Incrementing like for chit ID ${chitId}`);
-};
+}
 
-export { fetchChits, toggleBeLike };
+export async function postChit(chit) {
+	const endpoint = localBackendUrl + 'chit';
+	const chitData = {
+		content: chit.content
+	};
+	console.log('Posting chit to: ' + endpoint);
+	console.log(JSON.stringify(chitData));
+	const response = await fetch(endpoint, {
+		method: 'POST',
+		headers: {
+			Accept: 'application/json',
+			'Access-Control-Allow-Origin': '*',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(chitData)
+	});
+
+	const data = await response.json();
+	console.log(data);
+}
