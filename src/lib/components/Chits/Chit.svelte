@@ -1,48 +1,22 @@
-<script>
-	import { ChitStore } from '$lib/stores/ChitStore.js';
-	import { browser } from '$app/environment';
-
-	export let chit;
-	let author = chit.author;
-
-	let isLiked = false;
-	let userId;
-
-	if (browser) {
-		userId = localStorage.getItem('userId');
-	}
-
-	function like() {
-		userId = localStorage.getItem('userId');
-		ChitStore.toggleLike(chit.id, userId);
-	}
-
-	function remove() {
-		ChitStore.removeChit(chit);
-	}
-
-	function hasUserLikedChit(userId) {
-		let likeId = chit.likes.indexOf(userId);
-		if (likeId === -1) return false;
-
-		return true;
-	}
+<script lang="ts">
+	import type { ChitData } from '$lib/types/types';
+	export let chit: ChitData;
 </script>
 
 <div class="chit" id="chit-{chit.id}">
-	<div class="author">{author.name}</div>
-	<div class="handle">{author.handle}</div>
+	<div class="author">{chit.author.name}</div>
+	<div class="handle">{chit.author.handle}</div>
 	<div class="chit-content">
 		{chit.content}
 	</div>
 	<div class="chit-meta">
 		<button class="rechit"><i class="fa-solid fa-retweet" /> 2</button>
-		<button class="like" on:click={like}
-			><i class="fa-thumbs-up {isLiked ? 'fa-solid' : 'fa-regular'}" />
+		<button class="like"
+			><i class="fa-thumbs-up" />
 			0</button
 		>
 		<button class="share"><i class="fa-solid fa-share-alt" /></button>
-		<button class="remove" on:click={remove}><i class="fa-solid fa-trash" /></button>
+		<button class="remove"><i class="fa-solid fa-trash" /></button>
 	</div>
 </div>
 
