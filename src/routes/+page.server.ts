@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
 
 	if (response.ok) {
 		const data = await response.json();
-		const chits: ChitData[] = data.data.chits;
+		const chits: ChitData[] = data.chits;
 		return { chits };
 	}
 	return {};

@@ -11,7 +11,7 @@
 
 		if (response.ok) {
 			const data = await response.json();
-			chits = data.data.chits;
+			chits = data.chits;
 		}
 	}
 </script>
