@@ -5,9 +5,11 @@
 		if (newChitContent === '' || newChitContent === undefined) return;
 
 		let newChit = {
-			userId: 1,
-			author: 'MSav',
-			handle: '@miisa',
+			author: {
+				id: 1,
+				name: 'MSav',
+				handle: '@miisa'
+			},
 			content: newChitContent
 		};
 		await fetch('/api/chit', {
@@ -17,7 +19,9 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(newChit)
-		});
+		})
+			.then((response) => response.json())
+			.then((data) => console.log(data));
 
 		newChitContent = '';
 	}
