@@ -3,19 +3,18 @@
 	import { browser } from '$app/environment';
 
 	export let chit;
-	
-	let isLiked;
+	let author = chit.author;
+
+	let isLiked = false;
 	let userId;
 
 	if (browser) {
 		userId = localStorage.getItem('userId');
-		isLiked = hasUserLikedChit(userId);
 	}
 
 	function like() {
 		userId = localStorage.getItem('userId');
 		ChitStore.toggleLike(chit.id, userId);
-		isLiked = hasUserLikedChit(userId);
 	}
 
 	function remove() {
@@ -31,8 +30,8 @@
 </script>
 
 <div class="chit" id="chit-{chit.id}">
-	<div class="author">{chit.author}</div>
-	<div class="handle">{chit.handle}</div>
+	<div class="author">{author.name}</div>
+	<div class="handle">{author.handle}</div>
 	<div class="chit-content">
 		{chit.content}
 	</div>
@@ -40,7 +39,7 @@
 		<button class="rechit"><i class="fa-solid fa-retweet" /> 2</button>
 		<button class="like" on:click={like}
 			><i class="fa-thumbs-up {isLiked ? 'fa-solid' : 'fa-regular'}" />
-			{chit.likes.length}</button
+			0</button
 		>
 		<button class="share"><i class="fa-solid fa-share-alt" /></button>
 		<button class="remove" on:click={remove}><i class="fa-solid fa-trash" /></button>

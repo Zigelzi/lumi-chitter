@@ -6,19 +6,19 @@ export function fetchChits() {
 	return [
 		{
 			id: 1,
-			author: 'MSav',
-			handle: '@miisa',
 			content: 'Testing chits with Svelte!',
-			likes: [],
-			authorId: '4487df84-770b-4b31-9299-8902bf50efbb'
+			author: {
+				name: 'Miika Savela',
+				handle: '@Miisa'
+			}
 		},
 		{
 			id: 2,
-			author: 'Panu Puula',
-			handle: '@papu',
 			content: 'This is my first chit',
-			likes: [],
-			authorId: 'ace16e01-47bd-4297-921e-05b72e013cc0'
+			author: {
+				name: 'Panu Puula',
+				handle: '@Papu'
+			}
 		}
 	];
 }
@@ -28,8 +28,13 @@ export function toggleBeLike(chitId) {
 }
 
 export async function postChit(chit) {
-	const chitData = {
-		content: chit.content
+	const data = {
+		chit: {
+			content: chit.content
+		},
+		author: {
+			id: chit.userId
+		}
 	};
 	const settings = {
 		method: 'POST',
@@ -37,7 +42,7 @@ export async function postChit(chit) {
 			Accept: 'application/json',
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify(chitData)
+		body: JSON.stringify(data)
 	};
 
 	try {

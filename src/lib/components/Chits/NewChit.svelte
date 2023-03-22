@@ -7,6 +7,7 @@
 
 		const userId = localStorage.getItem('userId');
 		let newChit = {
+			userId: 1,
 			author: 'MSav',
 			handle: '@miisa',
 			content: newChitContent,
