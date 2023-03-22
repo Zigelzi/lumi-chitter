@@ -1,6 +1,10 @@
-<script>
+<script lang="ts">
 	import NewChit from '$lib/components/Chits/NewChit.svelte';
 	import AllChits from '$lib/components/Chits/AllChits.svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+	$: chits = data.chits;
 </script>
 
 <div id="app-container" class="app-container">
@@ -8,7 +12,7 @@
 		<div class="container">
 			<main>
 				<NewChit />
-				<AllChits />
+				<AllChits {chits} />
 			</main>
 			<aside>
 				Chitter is a tweet client built on Svelte. Nothing much going on over here. See more on:
