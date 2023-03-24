@@ -5,7 +5,6 @@ export const GET: RequestHandler = async ({ fetch }) => {
 	const response = await fetch('http://localhost:5000/chit');
 
 	const data = await response.json();
-	console.log(data);
 
 	return json(data, {
 		status: 200
